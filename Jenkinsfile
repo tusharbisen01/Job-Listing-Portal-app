@@ -5,7 +5,7 @@ pipeline {
 
         stage('Clone') {
             steps {
-                git 'https://github.com/tusharbisen01/job-portal.git'
+                git 'https://github.com/tusharbisen01/Job-Listing-Portal-app.git'
             }
         }
 

@@ -1,17 +1,26 @@
-const router = require("express").Router();   // ✅ REQUIRED
+const router = require("express").Router();
 const auth = require("../middleware/auth");
+const Job = require("../models/Job");
 
-let jobs = [];
-
-// CREATE JOB (protected)
-router.post("/", auth, (req, res) => {
-  jobs.push(req.body);
-  res.json(jobs);
+// CREATE JOB
+router.post("/", auth, async (req, res) => {
+  try {
+    const job = new Job(req.body);
+    await job.save();
+    res.json(job);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // GET JOBS
-router.get("/", (req, res) => {
-  res.json(jobs);
+router.get("/", async (req, res) => {
+  try {
+    const jobs = await Job.find().sort({ createdAt: -1 });
+    res.json(jobs);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
-module.exports = router;   // ✅ REQUIRED
+module.exports = router;

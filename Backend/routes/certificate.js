@@ -1,20 +1,12 @@
 const router = require("express").Router();
-const mongoose = require("mongoose");
 
-const Application = mongoose.model("Application", {
-  userId: String,
-  jobId: String
-});
+let certificates = [
+  { id: "123", name: "Tushar", course: "DevOps" }
+];
 
-router.post("/", async (req, res) => {
-  const app = new Application(req.body);
-  await app.save();
-  res.json(app);
-});
-
-router.get("/", async (req, res) => {
-  const apps = await Application.find();
-  res.json(apps);
+router.get("/:id", (req, res) => {
+  const cert = certificates.find(c => c.id === req.params.id);
+  res.json(cert || { message: "Not found" });
 });
 
 module.exports = router;

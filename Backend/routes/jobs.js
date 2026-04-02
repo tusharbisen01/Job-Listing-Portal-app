@@ -1,21 +1,13 @@
 const router = require("express").Router();
-const mongoose = require("mongoose");
 
-const Job = mongoose.model("Job", {
-  title: String,
-  location: String,
-  salary: String,
-  description: String
+let jobs = [];
+
+router.post("/", (req, res) => {
+  jobs.push(req.body);
+  res.json(jobs);
 });
 
-router.post("/", async (req, res) => {
-  const job = new Job(req.body);
-  await job.save();
-  res.json(job);
-});
-
-router.get("/", async (req, res) => {
-  const jobs = await Job.find();
+router.get("/", (req, res) => {
   res.json(jobs);
 });
 

@@ -1,14 +1,6 @@
-const router = require("express").Router();
+const auth = require("../middleware/auth");
 
-let jobs = [];
-
-router.post("/", (req, res) => {
+router.post("/", auth, (req, res) => {
   jobs.push(req.body);
   res.json(jobs);
 });
-
-router.get("/", (req, res) => {
-  res.json(jobs);
-});
-
-module.exports = router;

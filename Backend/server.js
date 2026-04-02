@@ -6,9 +6,7 @@ require("dotenv").config();
 const app = express();
 
 app.use(express.json());
-app.use(cors({
-  origin: "*"
-}));
+app.use(cors());
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("MongoDB Connected"))
@@ -16,11 +14,8 @@ mongoose.connect(process.env.MONGO_URI)
 
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/jobs", require("./routes/jobs"));
-app.use("/api/apply", require("./routes/apply"));
 app.use("/api/certificate", require("./routes/certificate"));
 
-app.get("/", (req, res) => {
-  res.send("API Running...");
-});
+app.get("/", (req, res) => res.send("API Running"));
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+app.listen(5000, () => console.log("Server running"));

@@ -1,5 +1,5 @@
 const router = require("express").Router();   // ✅ THIS WAS MISSING
-const User = require("../models/User");
+const User = require("../modules/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 

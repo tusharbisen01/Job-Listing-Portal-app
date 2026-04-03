@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const auth = require("../middleware/auth");
-const Job = require("../models/Job");
+const Job = require("../modules/job");
 
 // CREATE JOB
 router.post("/", auth, async (req, res) => {

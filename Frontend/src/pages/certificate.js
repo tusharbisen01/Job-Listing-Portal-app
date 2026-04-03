@@ -6,7 +6,7 @@ function Certificate() {
   const [data, setData] = useState(null);
 
   const search = async () => {
-    const res = await axios.get(`http://YOUR_EC2_IP:5000/api/certificate/${id}`);
+    const res = await axios.get(`http://3.104.117.87:5000/api/certificate/${id}`);
     setData(res.data);
   };
 

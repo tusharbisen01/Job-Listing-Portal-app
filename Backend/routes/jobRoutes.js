@@ -4,7 +4,7 @@ const Job = require("../models/Job");
 const auth = require("../middleware/auth");
 
 // Get jobs (protected)
-router.get("/", auth, async (req, res) => {
+router.get("/", async (req, res) => {
   const jobs = await Job.find();
   res.json(jobs);
 });

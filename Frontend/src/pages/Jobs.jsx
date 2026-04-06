@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from "../api";
+import Navbar from "../components/Navbar";
 
 export default function Jobs() {
   const [jobs, setJobs] = useState([]);
@@ -7,17 +8,23 @@ export default function Jobs() {
   useEffect(() => {
     API.get("/jobs")
       .then(res => setJobs(res.data))
-      .catch(err => console.log(err));
+      .catch(() => alert("Error fetching jobs"));
   }, []);
 
   return (
     <div>
-      <h2>Available Jobs</h2>
-      {jobs.map(job => (
-        <div key={job._id} className="card">
-          {job.title}
-        </div>
-      ))}
+      <Navbar />
+      <h2 className="title">Available Jobs</h2>
+
+      <div className="grid">
+        {jobs.map(job => (
+          <div key={job._id} className="card">
+            <h3>{job.title}</h3>
+            <p>{job.description}</p>
+            <button className="primary">Apply</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

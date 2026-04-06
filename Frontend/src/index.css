@@ -1,48 +1,87 @@
+/* GLOBAL */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: #0f172a;
   color: white;
+  background: #0f172a;
 }
 
-/* Navbar */
+/* NAVBAR */
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
-  background: #1e293b;
+  padding: 20px 40px;
+  background: rgba(0,0,0,0.5);
+  position: fixed;
+  width: 100%;
+  z-index: 10;
 }
 
 .navbar a {
-  margin: 0 10px;
+  margin-left: 20px;
   text-decoration: none;
   color: white;
 }
 
-/* Hero */
+/* HERO */
 .hero {
-  text-align: center;
-  padding: 80px 20px;
+  height: 100vh;
+  background: url("https://images.unsplash.com/photo-1492724441997-5dc865305da7") no-repeat center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.overlay {
+  text-align: center;
+  background: rgba(0,0,0,0.6);
+  padding: 50px;
+  border-radius: 10px;
+}
+
+.overlay h1 {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.overlay p {
+  margin-bottom: 20px;
+}
+
+/* BUTTONS */
 .primary {
   background: #3b82f6;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
   color: white;
-  border-radius: 5px;
+  margin: 5px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
-/* Grid */
+.secondary {
+  background: transparent;
+  border: 1px solid white;
+  padding: 12px 20px;
+  color: white;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* FEATURES */
+.features {
+  padding: 60px 20px;
+  text-align: center;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
-  padding: 20px;
+  margin-top: 30px;
 }
 
-/* Cards */
 .card {
   background: #1e293b;
   padding: 20px;
@@ -51,24 +90,12 @@ body {
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-10px);
 }
 
-/* Form */
-.form {
-  width: 300px;
-  margin: 50px auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.form input {
-  margin: 10px 0;
-  padding: 10px;
-}
-
-/* Titles */
-.title {
+/* FOOTER */
+footer {
   text-align: center;
-  margin-top: 20px;
+  padding: 20px;
+  background: #020617;
 }

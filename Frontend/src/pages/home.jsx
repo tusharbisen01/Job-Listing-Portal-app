@@ -1,25 +1,33 @@
-import { useEffect, useState } from "react";
-import API from "../api";
+import React from "react";
 
-function Home() {
-  const [jobs, setJobs] = useState([]);
-
-  useEffect(() => {
-    API.get("/jobs").then(res => setJobs(res.data));
-  }, []);
-
+export default function Home() {
   return (
-    <div className="container">
-      <h1>🚀 Job Portal</h1>
-
-      {jobs.map(job => (
-        <div className="card" key={job._id}>
-          <h3>{job.title}</h3>
-          <p>{job.location}</p>
+    <div>
+      <header className="navbar">
+        <h2>JobPortal</h2>
+        <div>
+          <a href="/login">Login</a>
+          <a href="#" className="btn">Register</a>
         </div>
-      ))}
+      </header>
+
+      <section className="hero">
+        <h1>Find Your Dream Job 🚀</h1>
+        <p>A modern platform connecting talent with opportunity</p>
+        <button>Explore Jobs</button>
+      </section>
+
+      <section className="features">
+        <h2>Features</h2>
+        <div className="grid">
+          <div className="card">🔐 Authentication</div>
+          <div className="card">🔍 Job Search</div>
+          <div className="card">👤 Profile</div>
+          <div className="card">📄 Applications</div>
+          <div className="card">📋 Listings</div>
+          <div className="card">📊 Dashboard</div>
+        </div>
+      </section>
     </div>
   );
 }
-
-export default Home;

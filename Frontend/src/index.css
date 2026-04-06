@@ -1,33 +1,44 @@
 body {
+  font-family: 'Poppins', sans-serif;
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
   background: #0f172a;
   color: white;
 }
 
-.container {
-  max-width: 900px;
-  margin: auto;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background: #1e293b;
+}
+
+.hero {
+  text-align: center;
+  padding: 60px;
+}
+
+button {
+  padding: 10px 20px;
+  background: #3b82f6;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
   padding: 20px;
 }
 
 .card {
   background: #1e293b;
   padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 15px;
-  transition: 0.3s;
+  border-radius: 10px;
 }
 
-.card:hover {
-  transform: scale(1.02);
-}
-
-button {
-  padding: 10px 15px;
-  border: none;
-  background: #3b82f6;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
+.center {
+  text-align: center;
+  margin-top: 50px;
 }

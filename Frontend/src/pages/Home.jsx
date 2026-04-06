@@ -1,31 +1,26 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
   return (
     <div>
-      <header className="navbar">
-        <h2>JobPortal</h2>
-        <div>
-          <a href="/login">Login</a>
-          <a href="#" className="btn">Register</a>
-        </div>
-      </header>
+      <Navbar />
 
       <section className="hero">
         <h1>Find Your Dream Job 🚀</h1>
-        <p>A modern platform connecting talent with opportunity</p>
-        <button>Explore Jobs</button>
+        <p>Connecting talent with opportunity</p>
+        <Link to="/jobs">
+          <button className="primary">Explore Jobs</button>
+        </Link>
       </section>
 
       <section className="features">
-        <h2>Features</h2>
+        <h2>Why Choose Us</h2>
         <div className="grid">
-          <div className="card">🔐 Authentication</div>
-          <div className="card">🔍 Job Search</div>
-          <div className="card">👤 Profile</div>
-          <div className="card">📄 Applications</div>
-          <div className="card">📋 Listings</div>
-          <div className="card">📊 Dashboard</div>
+          <div className="card">🔐 Secure Login</div>
+          <div className="card">⚡ Fast Search</div>
+          <div className="card">📊 Smart Dashboard</div>
         </div>
       </section>
     </div>

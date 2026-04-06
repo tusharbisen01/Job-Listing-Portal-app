@@ -1,27 +1,45 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import API from "../api";
-import Navbar from "../components/Navbar";
 
 export default function Jobs() {
   const [jobs, setJobs] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    API.get("/jobs")
-      .then(res => setJobs(res.data))
-      .catch(() => alert("Error fetching jobs"));
+    API.get("/jobs").then(res => setJobs(res.data));
   }, []);
+
+  const filteredJobs = jobs.filter(job =>
+    job.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div>
-      <Navbar />
-      <h2 className="title">Available Jobs</h2>
+      <h1 className="page-title">Jobs</h1>
 
-      <div className="grid">
-        {jobs.map(job => (
-          <div key={job._id} className="card">
+      {/* FILTER BAR */}
+      <div className="filters">
+        <input
+          placeholder="Search jobs..."
+          onChange={(e) => setSearch(e.target.value)}
+        />
+
+        <select>
+          <option>All</option>
+          <option>Frontend</option>
+          <option>Backend</option>
+          <option>DevOps</option>
+        </select>
+      </div>
+
+      {/* JOB LIST */}
+      <div className="job-grid">
+        {filteredJobs.map(job => (
+          <div className="job-card" key={job._id}>
             <h3>{job.title}</h3>
             <p>{job.description}</p>
-            <button className="primary">Apply</button>
+
+            <button className="primary small">Apply</button>
           </div>
         ))}
       </div>

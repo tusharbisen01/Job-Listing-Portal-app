@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
 
-const JobSchema = new mongoose.Schema({
+const jobSchema = new mongoose.Schema({
   title: String,
-  location: String,
-  createdAt: { type: Date, default: Date.now }
+  description: String
 });
 
-module.exports = mongoose.model("Job", JobSchema);
+module.exports = mongoose.model("Job", jobSchema);

@@ -6,7 +6,7 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const login = async () => {
-    const res = await axios.post("http://3.104.117.87:5000/api/auth/login", {
+    const res = await axios.post("http://3.26.0.147:5000/api/auth/login", {
       email,
       password
     });

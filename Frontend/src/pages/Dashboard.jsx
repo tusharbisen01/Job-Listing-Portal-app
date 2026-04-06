@@ -1,16 +1,32 @@
-import React from "react";
-import Navbar from "../components/Navbar";
-
 export default function Dashboard() {
   return (
     <div>
-      <Navbar />
-      <h2 className="title">Dashboard</h2>
+      <h1 className="page-title">Dashboard</h1>
 
-      <div className="grid">
-        <div className="card">📄 Applications: 12</div>
-        <div className="card">💾 Saved Jobs: 5</div>
-        <div className="card">📅 Interviews: 2</div>
+      <div className="stats">
+        <div className="stat-card">
+          <h3>12</h3>
+          <p>Applications</p>
+        </div>
+
+        <div className="stat-card">
+          <h3>5</h3>
+          <p>Saved Jobs</p>
+        </div>
+
+        <div className="stat-card">
+          <h3>2</h3>
+          <p>Interviews</p>
+        </div>
+      </div>
+
+      <div className="dashboard-section">
+        <h2>Recent Activity</h2>
+        <ul>
+          <li>Applied to Frontend Developer</li>
+          <li>Saved Backend Role</li>
+          <li>Interview scheduled</li>
+        </ul>
       </div>
     </div>
   );

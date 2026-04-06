@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import API from "../api";
+import Navbar from "../components/Navbar";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -10,17 +11,23 @@ export default function Login() {
       const res = await API.post("/auth/login", { email, password });
       localStorage.setItem("token", res.data.token);
       alert("Login successful");
-    } catch (err) {
-      alert("Login failed");
+      window.location.href = "/dashboard";
+    } catch {
+      alert("Invalid credentials");
     }
   };
 
   return (
-    <div className="center">
-      <h2>Login</h2>
-      <input placeholder="Email" onChange={e => setEmail(e.target.value)} />
-      <input type="password" onChange={e => setPassword(e.target.value)} />
-      <button onClick={handleLogin}>Login</button>
+    <div>
+      <Navbar />
+      <div className="form">
+        <h2>Login</h2>
+        <input placeholder="Email" onChange={e => setEmail(e.target.value)} />
+        <input type="password" onChange={e => setPassword(e.target.value)} />
+        <button className="primary" onClick={handleLogin}>
+          Login
+        </button>
+      </div>
     </div>
   );
 }

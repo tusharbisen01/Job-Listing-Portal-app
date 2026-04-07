@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Job = require("../models/Job");
+const Job = require("../modules/Job");
 const auth = require("../middleware/auth");
 
 // Public jobs
@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
 
 // Apply job
 router.post("/apply", auth, async (req, res) => {
-  const Application = require("../models/Application");
+  const Application = require("../modules/Application");
 
   const app = new Application({
     userId: req.user.id,

@@ -21,9 +21,16 @@ A full-stack MERN project connecting job seekers and employers with authenticati
 ## 🧩 Installation
 
 ```bash
-git clone [github.com](https://github.com/tusharbisen01/Job-Listing-Portal-app.git)
+sudo apt update -y
+sudo apt install docker.io -y
+sudo apt install docker-compose -y
+sudo usermod -aG docker $USER && newgrp docker
+git clone https://github.com/tusharbisen01/Job-Listing-Portal-app.git
 cd Job-Listing-Portal-app
-npm install
-cd backend && npm install
+cd Backend && npm install
 cd Frontend
 npm install framer-motion react-tsparticles tsparticles react-icons
+cd ..
+docker-compose down
+docker-compose up --build -d
+docker ps

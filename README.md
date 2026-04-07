@@ -25,3 +25,5 @@ git clone [github.com](https://github.com/tusharbisen01/Job-Listing-Portal-app.g
 cd Job-Listing-Portal-app
 npm install
 cd backend && npm install
+cd Frontend
+npm install framer-motion react-tsparticles tsparticles react-icons

@@ -1,21 +1,22 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Jobs from "./pages/Jobs";
 import Dashboard from "./pages/Dashboard";
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/jobs" element={<Jobs />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/jobs" element={<Jobs />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 }
-
-export default App;

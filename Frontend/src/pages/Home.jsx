@@ -1,88 +1,58 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import ParticleBackground from "../components/ParticleBackground";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="landing">
+    <div className="home">
+
+      <ParticleBackground />
+      <Navbar />
 
       {/* HERO */}
       <section className="hero">
-        <div className="overlay" />
+        <motion.h1
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          Find Your Dream Job 🚀
+        </motion.h1>
 
-        <div className="hero-content">
-          <h1>
-            Land Your Dream Job <span>🚀</span>
-          </h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          The most modern job portal experience.
+        </motion.p>
 
-          <p>
-            Discover top opportunities, connect with companies, and build your future with confidence.
-          </p>
-
-          <div className="buttons">
-            <button onClick={() => navigate("/jobs")}>
-              Explore Jobs
-            </button>
-
-            <button className="outline" onClick={() => navigate("/login")}>
-              Get Started
-            </button>
-          </div>
-        </div>
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          onClick={() => navigate("/jobs")}
+        >
+          Explore Jobs
+        </motion.button>
       </section>
 
       {/* FEATURES */}
       <section className="features">
-        <h2>Why Choose Us</h2>
-
-        <div className="feature-grid">
-          <div className="card">
-            <h3>🔍 Smart Search</h3>
-            <p>Find jobs tailored to your skills instantly.</p>
-          </div>
-
-          <div className="card">
-            <h3>⚡ Fast Apply</h3>
-            <p>Apply to jobs in just one click.</p>
-          </div>
-
-          <div className="card">
-            <h3>📊 Dashboard</h3>
-            <p>Track your applications and interviews.</p>
-          </div>
-
-          <div className="card">
-            <h3>🔐 Secure</h3>
-            <p>Your data is safe and encrypted.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* STATS */}
-      <section className="stats">
-        <div>
-          <h2>10K+</h2>
-          <p>Jobs Posted</p>
-        </div>
-
-        <div>
-          <h2>5K+</h2>
-          <p>Companies</p>
-        </div>
-
-        <div>
-          <h2>20K+</h2>
-          <p>Users</p>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="cta">
-        <h2>Start Your Career Journey Today</h2>
-        <button onClick={() => navigate("/jobs")}>
-          Get Started
-        </button>
+        {["Smart Search", "Fast Apply", "Dashboard", "Secure"].map((item, i) => (
+          <motion.div
+            className="card glass"
+            key={i}
+            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.2 }}
+          >
+            {item}
+          </motion.div>
+        ))}
       </section>
 
     </div>

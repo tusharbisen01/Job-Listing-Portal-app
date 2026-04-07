@@ -7,8 +7,10 @@ export default function Jobs() {
   const [category, setCategory] = useState("All");
 
   useEffect(() => {
-    API.get("/jobs").then(res => setJobs(res.data));
-  }, []);
+  API.get("/jobs")
+    .then(res => setJobs(res.data))
+    .catch(() => setJobs([])); // ✅ prevents crash
+}, []);
 
   const filtered = jobs.filter(job =>
     job.title.toLowerCase().includes(search.toLowerCase()) &&

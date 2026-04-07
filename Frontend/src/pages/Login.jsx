@@ -1,33 +1,28 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import API from "../api";
-import Navbar from "../components/Navbar";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
+  const login = async () => {
     try {
-      const res = await API.post("/auth/login", { email, password });
+      const res = await API.post("/login", { email, password });
       localStorage.setItem("token", res.data.token);
       alert("Login successful");
-      window.location.href = "/dashboard";
     } catch {
-      alert("Invalid credentials");
+      alert("Login failed");
     }
   };
 
   return (
-    <div>
-      <Navbar />
-      <div className="form">
-        <h2>Login</h2>
-        <input placeholder="Email" onChange={e => setEmail(e.target.value)} />
-        <input type="password" onChange={e => setPassword(e.target.value)} />
-        <button className="primary" onClick={handleLogin}>
-          Login
-        </button>
-      </div>
+    <div className="card">
+      <h2>Login</h2>
+
+      <input placeholder="Email" onChange={e => setEmail(e.target.value)} />
+      <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+
+      <button className="primary" onClick={login}>Login</button>
     </div>
   );
 }

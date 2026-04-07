@@ -1,50 +1,58 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import API from "../api";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Navbar from "../components/Navbar";
 
 export default function Jobs() {
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("All");
 
+  // Dummy data (replace with API later)
   useEffect(() => {
-  API.get("/jobs")
-    .then(res => setJobs(res.data))
-    .catch(() => setJobs([])); // ✅ prevents crash
-}, []);
+    setJobs([
+      { id: 1, title: "Frontend Developer", company: "Google", type: "Remote" },
+      { id: 2, title: "Backend Developer", company: "Amazon", type: "Onsite" },
+      { id: 3, title: "DevOps Engineer", company: "Microsoft", type: "Hybrid" },
+    ]);
+  }, []);
 
-  const filtered = jobs.filter(job =>
-    job.title.toLowerCase().includes(search.toLowerCase()) &&
-    (category === "All" || job.category === category)
+  const filtered = jobs.filter((job) =>
+    job.title.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div>
-      <h1 className="title">Jobs</h1>
+      <Navbar />
 
-      <div className="filters">
+      <div style={{ paddingTop: "120px", paddingInline: "40px" }}>
+        <h1 className="title">Find Jobs</h1>
+
+        {/* SEARCH */}
         <input
+          className="glass input"
           placeholder="Search jobs..."
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        <select onChange={(e) => setCategory(e.target.value)}>
-          <option>All</option>
-          <option>Frontend</option>
-          <option>Backend</option>
-          <option>DevOps</option>
-        </select>
-      </div>
+        {/* JOB LIST */}
+        <div className="job-grid">
+          {filtered.map((job, i) => (
+            <motion.div
+              key={job.id}
+              className="card glass job-card"
+              whileHover={{ scale: 1.05 }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2 }}
+            >
+              <h3>{job.title}</h3>
+              <p>{job.company}</p>
+              <span>{job.type}</span>
 
-      <div className="grid">
-        {filtered.map(job => (
-          <div className="card job-card" key={job._id}>
-            <h3>{job.title}</h3>
-            <p>{job.description}</p>
-
-            <button className="primary small">Apply</button>
-          </div>
-        ))}
+              <button className="primary">Apply</button>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   );

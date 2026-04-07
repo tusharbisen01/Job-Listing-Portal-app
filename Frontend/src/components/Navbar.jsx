@@ -7,7 +7,7 @@ export default function Navbar() {
     <div className="navbar glass">
       <h2>JobPortal</h2>
 
-      <div>
+      <div className="nav-links">
         <Link to="/">Home</Link>
         <Link to="/jobs">Jobs</Link>
         <Link to="/login">Login</Link>

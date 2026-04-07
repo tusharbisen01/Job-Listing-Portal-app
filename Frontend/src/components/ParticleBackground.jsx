@@ -11,7 +11,7 @@ export default function ParticleBackground() {
     <Particles
       init={init}
       options={{
-        background: { color: "transparent" },
+        fullScreen: { enable: false },
         particles: {
           number: { value: 60 },
           size: { value: 2 },
@@ -20,6 +20,7 @@ export default function ParticleBackground() {
           opacity: { value: 0.3 }
         }
       }}
+      className="particles"
     />
   );
 }

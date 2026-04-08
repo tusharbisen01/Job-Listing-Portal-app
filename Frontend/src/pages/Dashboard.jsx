@@ -1,5 +1,4 @@
 import React from "react";
-import Dashboard from "./pages/Dashboard";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 

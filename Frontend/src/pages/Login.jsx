@@ -1,21 +1,36 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
+import API from "../api";   // ✅ IMPORTANT
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    try {
+      const res = await API.post("/login", {
+        email,
+        password,
+      });
+
+      // store token
+      localStorage.setItem("token", res.data.token);
+
+      alert("Login successful 🚀");
+      window.location.href = "/dashboard";
+
+    } catch (err) {
+      alert(err.response?.data || "Login failed ❌");
+    }
+  };
 
   return (
     <div>
       <Navbar />
 
       <div className="center">
-        <motion.div
-          className="card glass login-box"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-        >
+        <motion.div className="card glass login-box">
           <h2>Login</h2>
 
           <input
@@ -31,7 +46,9 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button className="primary">Login</button>
+          <button className="primary" onClick={handleLogin}>
+            Login
+          </button>
         </motion.div>
       </div>
     </div>

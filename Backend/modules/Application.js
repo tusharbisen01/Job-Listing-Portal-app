@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
 
-const ApplicationSchema = new mongoose.Schema({
+const applicationSchema = new mongoose.Schema({
   userId: String,
   jobId: String,
-  resume: String,
-  createdAt: { type: Date, default: Date.now }
-});
+}, { timestamps: true });
 
-module.exports = mongoose.model("Application", ApplicationSchema);
+module.exports = mongoose.model("Application", applicationSchema);

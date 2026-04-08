@@ -3,28 +3,28 @@ pipeline {
 
     stages {
 
+        stage('Clean Workspace') {
+            steps {
+                deleteDir()
+            }
+        }
+
         stage('Clone Repo') {
             steps {
                 git branch: 'main', url: 'https://github.com/tusharbisen01/Job-Listing-Portal-app.git'
             }
         }
 
-        stage('Build Docker Images') {
+        stage('Build Docker') {
             steps {
-                sh 'docker-compose build --no-cache'
+                sh 'docker-compose build'
             }
         }
 
-        stage('Deploy Containers') {
+        stage('Deploy') {
             steps {
                 sh 'docker-compose down'
                 sh 'docker-compose up -d'
-            }
-        }
-
-        stage('Cleanup') {
-            steps {
-                sh 'docker image prune -f'
             }
         }
     }

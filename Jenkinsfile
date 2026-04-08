@@ -12,8 +12,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 dir('frontend') {
-                    sh 'sudo apt install npm -y'
-                    sh 'npm install framer-motion react-tsparticles tsparticles react-icons'
+                    sh 'npm install'
                 }
             }
         }

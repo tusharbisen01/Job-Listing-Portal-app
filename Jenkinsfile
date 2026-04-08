@@ -9,14 +9,6 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                dir('frontend') {
-                    sh 'npm install'
-                }
-            }
-        }
-
         stage('Build Docker Images') {
             steps {
                 sh 'docker-compose build --no-cache'

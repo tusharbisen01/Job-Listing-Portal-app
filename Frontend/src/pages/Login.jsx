@@ -1,23 +1,39 @@
-import { useState } from "react";
-import API from "../api";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import Navbar from "../components/Navbar";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const login = async () => {
-    const res = await API.post("/login", { email, password });
-    localStorage.setItem("token", res.data.token);
-    alert("Login success");
-    window.location.href = "/dashboard";
-  };
-
   return (
     <div>
-      <h2>Login</h2>
-      <input onChange={e => setEmail(e.target.value)} placeholder="Email" />
-      <input type="password" onChange={e => setPassword(e.target.value)} />
-      <button onClick={login}>Login</button>
+      <Navbar />
+
+      <div className="center">
+        <motion.div
+          className="card glass login-box"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+        >
+          <h2>Login</h2>
+
+          <input
+            placeholder="Email"
+            className="input"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <input
+            type="password"
+            placeholder="Password"
+            className="input"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <button className="primary">Login</button>
+        </motion.div>
+      </div>
     </div>
   );
 }

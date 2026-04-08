@@ -1,30 +1,39 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_COMPOSE_FILE = "docker-compose.yml"
+    }
+
     stages {
 
-        stage('Clone') {
+        stage('Clone Repo') {
             steps {
                 git 'https://github.com/tusharbisen01/Job-Listing-Portal-app.git'
             }
         }
 
-        stage('Build Docker') {
+        stage('Build Docker Images') {
             steps {
-                sh 'cd backend && docker build -t job-portal .'
+                sh 'docker-compose build'
             }
         }
 
-        stage('Stop Old') {
+        stage('Stop Old Containers') {
             steps {
-                sh 'docker stop job-container || true'
-                sh 'docker rm job-container || true'
+                sh 'docker-compose down'
             }
         }
 
-        stage('Deploy') {
+        stage('Start Containers') {
             steps {
-                sh 'docker run -d -p 5000:5000 --env-file backend/.env --name job-container job-portal'
+                sh 'docker-compose up -d'
+            }
+        }
+
+        stage('Cleanup') {
+            steps {
+                sh 'docker system prune -f'
             }
         }
     }

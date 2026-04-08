@@ -1,44 +1,41 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import ParticleBackground from "../components/ParticleBackground";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="landing">
+    <div className="home">
 
       <ParticleBackground />
       <Navbar />
 
       {/* HERO */}
       <section className="hero">
-        <div className="overlay"></div>
-
-        <motion.div
-          className="hero-content"
-          initial={{ opacity: 0, y: 50 }}
+        <motion.h1
+          initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
         >
-          <h1>Find Your Dream Job 🚀</h1>
+          Find Your Dream Job 🚀
+        </motion.h1>
 
-          <p>
-            Discover opportunities, connect with companies,
-            and build your future with confidence.
-          </p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          The most modern job portal experience.
+        </motion.p>
 
-          <div className="buttons">
-            <button onClick={() => navigate("/jobs")}>
-              Explore Jobs
-            </button>
-
-            <button className="outline" onClick={() => navigate("/login")}>
-              Get Started
-            </button>
-          </div>
-        </motion.div>
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          onClick={() => navigate("/jobs")}
+        >
+          Explore Jobs
+        </motion.button>
       </section>
 
       {/* FEATURES */}
@@ -55,21 +52,6 @@ export default function Home() {
             {item}
           </motion.div>
         ))}
-      </section>
-
-      {/* STATS */}
-      <section className="stats">
-        <div><h2>10K+</h2><p>Jobs</p></div>
-        <div><h2>5K+</h2><p>Companies</p></div>
-        <div><h2>20K+</h2><p>Users</p></div>
-      </section>
-
-      {/* CTA */}
-      <section className="cta">
-        <h2>Start Your Career Journey Today</h2>
-        <button onClick={() => navigate("/jobs")}>
-          Get Started
-        </button>
       </section>
 
     </div>
